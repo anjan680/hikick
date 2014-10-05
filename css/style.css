@@ -1,0 +1,15 @@
+.person {
+    background-color: rgba(00, 00, 99, 0.5)
+}
+.round-corner-right {
+    border-radius: 0px 40px 40px 0px !important;
+}
+.round-corner-left {
+    border-radius: 40px 0px 0px 40px !important;
+}
+.bttn-round-corner {
+    border-radius: 14px !important;
+}
+.image-container {
+    margin: 20px;
+}
