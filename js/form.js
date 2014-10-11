@@ -1,11 +1,11 @@
  $(document).ready(function() {
-     $('#country').change(function() {
+     $('country').change(function() {
          var country = $(this).val();
          if (country === 'India') {
              $(".states-selection").append($('.states-selection-template').html());
              $(".club-selection").append($(".club-select-template").html());
 
-             $('#club').change(function() {
+             $('club').change(function() {
                  var club = $(this).val();
                  if (club === 'Others') {
                      $(".club-input").append($(".club-input-template").html());
