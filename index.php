@@ -61,12 +61,7 @@
             $objParticipant->state_code=str_replace("''","''", $_POST['state']);
             $objParticipant->gender=str_replace("''","''", $_POST['sex']);
             $objParticipant->club_name=str_replace("''","''", $_POST['club']);
-
-            $dtbirth= date('d/m/Y H:i:s',strtotime($_POST['candidate_dob']));
-
-
-            $objParticipant->dob=date('Y-m-d H:i:s',$dtbirth);
-
+            $objParticipant->dob=str_replace("''","''", $_POST['candidate_dob']);////////DOB in string
             $objParticipant->weight=str_replace("''","''", $_POST['candidate_weight']);
             $objParticipant->choice_event_kata=str_replace("''","''", $_POST['kata']);
             $objParticipant->choice_event_kumite=str_replace("''","''", $_POST['kumite']);
@@ -127,7 +122,7 @@
                                     <div class="form-group">
                                         <label for="candidate_f_name" class="col-lg-4 control-label">First Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_first_name" name="candidate_first_name" placeholder="Candidate's First Name" required>
+                                            <input type="text" class="form-control" name="candidate_first_name" id="candidate_first_name" name="candidate_first_name" placeholder="Candidate's First Name" required>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +131,7 @@
                                     <div class="form-group">
                                         <label for="candidate_l_name" class="col-lg-4 control-label">Last Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_last_name" placeholder="Candidate's Last Name" required>
+                                            <input type="text" class="form-control" name="candidate_last_name" id="candidate_last_name" placeholder="Candidate's Last Name" required>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +164,7 @@
                                     <div class="form-group">
                                         <label for="candidate_dob" class="col-lg-4 control-label">Date Of Birth</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control date" name="candidate_dob" placeholder="DD/MM/YYYY" required>
+                                            <input type="text" class="form-control date" name="candidate_dob" id="candidate_dob" placeholder="DD/MM/YYYY" required>
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +174,7 @@
                                         <label for="candidate_weight" class="col-lg-4 control-label">Weight</label>
                                         <div class="col-lg-8">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="candidate_weight" placeholder="Ex : 50.58" required>
+                                                <input type="text" class="form-control" name="candidate_weight" id="candidate_weight" placeholder="Ex : 50.58" required>
                                                 <span class="input-group-addon">Kg</span>
                                             </div>
                                         </div>
@@ -192,7 +187,7 @@
                                     <div class="form-group">
                                         <label for="select" class="col-lg-4 control-label">Country</label>
                                         <div class="col-lg-8">
-                                            <select class="form-control" name="country" required>
+                                            <select class="form-control" name="country" id="country" required>
                                                 <option value="" selected>-select-</option>
                                                 <option value="India">India</option>
                                                 <option value="Bangladesh">Bangladesh</option>
@@ -218,14 +213,14 @@
                                         <div class="col-sm-6">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="kata" value="1">Kata
+                                                    <input type="checkbox" name="kata" id="kata" value="1">Kata
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="kumite" value="1">Kumite
+                                                    <input type="checkbox" name="kumite" id="kumite" value="1">Kumite
                                                 </label>
                                             </div>
                                         </div>
@@ -234,14 +229,14 @@
                                         <div class="col-sm-6">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="weapons" value="1">Weapons
+                                                    <input type="checkbox" name="weapons" id="weapons" value="1">Weapons
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="team_kata" value="1">Team Kata
+                                                    <input type="checkbox" name="team_kata" id="team_kata" value="1">Team Kata
                                                 </label>
                                             </div>
                                         </div>
@@ -254,7 +249,7 @@
                                     <div class="form-group">
                                         <label for="candidate_mo_num" class="col-lg-4 control-label">Contact No.</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_mo_num" placeholder="Ex. +91-1234567890" required>
+                                            <input type="text" class="form-control" name="candidate_mo_num" id="candidate_mo_num" placeholder="Ex. +91-1234567890" required>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +258,7 @@
                                     <div class="form-group">
                                         <label for="candidate_email" class="col-lg-4 control-label">Email</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_email" placeholder="Ex. abc@123.com">
+                                            <input type="text" class="form-control" name="candidate_email" id="candidate_email" placeholder="Ex. abc@123.com">
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +267,7 @@
                             <div class="form-group">
                                 <label for="textArea" class="col-lg-2 control-label">Address</label>
                                 <div class="col-lg-10">
-                                    <textarea class="form-control" rows="4" name="address" required></textarea>
+                                    <textarea class="form-control" rows="4" name="address" id="address" required></textarea>
                                     <span class="help-block">Enter proper mailing address</span>
                                 </div>
                             </div>
@@ -280,7 +275,7 @@
                             <div class="form-group">
                                 <div class="col-lg-12 text-center">
                                     <!-- <button type="submit" class="btn btn-primary bttn-round-corner" name="submit" id="submit">Submit</button> -->
-                                     <input type="submit" name="Submit"  class="btn btn-primary bttn-round-corner" />
+                                     <input type="submit" name="Submit" id="submit_button"  class="btn btn-primary bttn-round-corner" />
                                 </div>
                             </div> 
                         </fieldset>
@@ -295,7 +290,7 @@
             <div class="form-group">
                 <label for="club_name" class="col-lg-4 control-label">Club</label>
                 <div class="col-lg-8">
-                    <select class="form-control" id="club" required>
+                    <select class="form-control" id="club" name="club" required>
                         <option value="" selected>-select-</option>
                         <option value="Others">Others</option>
                     </select>
@@ -319,7 +314,7 @@
         <div class="form-group">
             <label for="select" class="col-lg-4 control-label">State</label>
             <div class="col-lg-8">
-                <select class="form-control" id="state" required>
+                <select class="form-control" id="state" name="state" required>
                     <option value="default" selected="">-Select-</option>
                     <option value="AN">Andaman and Nicobar Islands</option>
                     <option value="AP">Andhra Pradesh</option>

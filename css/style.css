@@ -2,7 +2,8 @@
     background-color: rgba(00, 00, 99, 0.5)
 }
 .round-corner-right {
-    border-radius: 0px 0px 40px 40px !important ;
+    border-radius: 0px 0px 40px 40px !important;
+    background-color: #A2EBE8 !important;
 }
 .round-corner-left {
     border-radius: 40px 0px 0px 40px !important;
@@ -20,10 +21,10 @@
 .colr:hover {
     background-color: #c3e6e5;
 }
-.well2{
-	background: url('../images/ka.jpg') 0% 20%;
-	border-radius:0px 0px 40px 40px; 
+.well2 {
+    background: url('../images/ka.jpg') 0% 20%;
+    border-radius: 0px 0px 40px 40px;
 }
-.well{	
-	opacity: 0.95;
+.well {
+    opacity: 0.95;
 }
