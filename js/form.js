@@ -12,27 +12,50 @@ var errorNotifier = function(element, resetOn, isParent) {
         });
     }
 }
+var validateEmail = function(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+function validateWeight(email) {
+    var re = /\d\d\.\d\d/;
+    return re.test(email);
+}
 var formValidator = function(event) {
     var validationFailed = false;
-    if (!$('#candidate_first_name').val()) {
+    if (!$('#candidate_name').val()) {
         validationFailed = true;
-        errorNotifier($('#candidate_first_name'), 'keyup');
-    }
-    if (!$('#candidate_last_name').val()) {
-        validationFailed = true;
-        errorNotifier($('#candidate_last_name'), 'keyup');
+        errorNotifier($('#candidate_name'), 'keyup');
     }
     if (!$('#candidate_dob').val()) {
         validationFailed = true;
         errorNotifier($('#candidate_dob'), 'click');
     }
-    if (!$('#candidate_weight').val()) {
+    if (!$('#candidate_weight').val() ||
+        !validateWeight($('#candidate_weight').val())) {
         validationFailed = true;
         errorNotifier($('#candidate_weight'), 'keyup');
     }
     if (!$('#country').val()) {
         validationFailed = true;
         errorNotifier($('#country'), 'change');
+    }
+    if ($('#country').val() === 'India') {
+        if (!$('#state').val()) {
+            validationFailed = true;
+            errorNotifier($('#state'), 'change');
+        }
+        if (!$('#club').val()) {
+            validationFailed = true;
+            errorNotifier($('#club'), 'change');
+        }
+        if ($('#club').val() === 'Others') {
+            if (!$('#club_name_other').val() ||
+                $('#club_name_other').val() === 'Others') {
+                validationFailed = true;
+                errorNotifier($('#club_name_other'), 'keyup');
+            }
+        }
     }
     if (!$('#kata').is(":checked") &&
         !$('#kumite').is(":checked") &&
@@ -45,7 +68,8 @@ var formValidator = function(event) {
         validationFailed = true;
         errorNotifier($('#candidate_mo_num'), 'keyup');
     }
-    if (!$('#candidate_email').val()) {
+    if (!$('#candidate_email').val() ||
+        !validateEmail($('#candidate_email').val())) {
         validationFailed = true;
         errorNotifier($('#candidate_email'), 'keyup');
     }

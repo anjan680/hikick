@@ -53,25 +53,27 @@
 
 	$objParticipant= new Participant();
 	
-	if(@$_POST['Submit'])
-	{		
-            $objParticipant->first_name = str_replace("''","''", $_POST['candidate_first_name']);
-            $objParticipant->last_name=str_replace("''","''", $_POST['candidate_last_name']);
-            $objParticipant->country=str_replace("''","''", $_POST['country']);
-            $objParticipant->state_code=str_replace("''","''", $_POST['state']);
-            $objParticipant->gender=str_replace("''","''", $_POST['sex']);
-            $objParticipant->club_name=str_replace("''","''", $_POST['club']);
-            $objParticipant->dob=str_replace("''","''", $_POST['candidate_dob']);////////DOB in string
-            $objParticipant->weight=str_replace("''","''", $_POST['candidate_weight']);
-            $objParticipant->choice_event_kata=str_replace("''","''", $_POST['kata']);
-            $objParticipant->choice_event_kumite=str_replace("''","''", $_POST['kumite']);
-            $objParticipant->choice_event_weapons=str_replace("''","''", $_POST['weapons']);
-            $objParticipant->choice_event_team_kata=str_replace("''","''", $_POST['team_kata']);
-            $objParticipant->email_id=str_replace("''","''", $_POST['candidate_email']);
-            $objParticipant->contact_no=str_replace("''","''", $_POST['candidate_mo_num']);
-            $objParticipant->address=str_replace("''","''", $_POST['address']);
-			
-			$objParticipant->insert_into_participant();
+	if(@$_POST['Submit']){		
+        $club_name=str_replace("''","''", $_POST['club']);
+        if($club_name=='Others'){
+            $club_name=str_replace("''","''", $_POST['club_name_other']);
+        }
+        $objParticipant->participant_name = str_replace("''","''", $_POST['candidate_name']);
+        $objParticipant->country=str_replace("''","''", $_POST['country']);
+        $objParticipant->state_code=str_replace("''","''", $_POST['state']);
+        $objParticipant->gender=str_replace("''","''", $_POST['sex']);
+        $objParticipant->club_name=$club_name;
+        $objParticipant->dob=str_replace("''","''", $_POST['candidate_dob']);
+        $objParticipant->weight=str_replace("''","''", $_POST['candidate_weight']);
+        $objParticipant->choice_event_kata=str_replace("''","''", $_POST['kata']);
+        $objParticipant->choice_event_kumite=str_replace("''","''", $_POST['kumite']);
+        $objParticipant->choice_event_weapons=str_replace("''","''", $_POST['weapons']);
+        $objParticipant->choice_event_team_kata=str_replace("''","''", $_POST['team_kata']);
+        $objParticipant->email_id=str_replace("''","''", $_POST['candidate_email']);
+        $objParticipant->contact_no=str_replace("''","''", $_POST['candidate_mo_num']);
+        $objParticipant->address=str_replace("''","''", $_POST['address']);
+		
+		$objParticipant->insert_into_participant();
 				
 
 	}
@@ -112,52 +114,47 @@
             </div> -->
             <div class="col-lg-offset-1 col-lg-10 well2">
                 <div class="well round-corner-right">
-                    <form class="form-horizontal" name="frmAddProduct" id="frmAddProduct" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" name="frmAddProduct" id="frmAddProduct" method="POST" enctype="multipart/form-data">
                         <fieldset>
                             <legend>
-                                <div class="col-sm-offset-1">Legend</div>
+                                <div class="col-sm-offset-1 text-center">Candidate Registration for Trinational Karate Championship</div>
                             </legend>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="candidate_f_name" class="col-lg-4 control-label">First Name</label>
+                                        <label for="candidate_name" class="col-lg-4 control-label">Name</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_first_name" id="candidate_first_name" name="candidate_first_name" placeholder="Candidate's First Name" required>
+                                            <input type="text" class="form-control" name="candidate_name" id="candidate_name" placeholder="Candidate's Name" required>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="candidate_l_name" class="col-lg-4 control-label">Last Name</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_last_name" id="candidate_last_name" placeholder="Candidate's Last Name" required>
+                                        <label class="col-sm-4 control-label">Gender</label>
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="sex" value="M" checked="">Male
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="sex"  value="F">Female
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
  
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Gender</label>
-                                <div class="col-sm-10">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="sex" value="M" checked="">Male
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="sex"  value="F">Female
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -275,7 +272,7 @@
                             <div class="form-group">
                                 <div class="col-lg-12 text-center">
                                     <!-- <button type="submit" class="btn btn-primary bttn-round-corner" name="submit" id="submit">Submit</button> -->
-                                     <input type="submit" name="Submit" id="submit_button"  class="btn btn-primary bttn-round-corner" />
+                                     <input type="submit" name="Submit" id="submit_button"  class="btn btn-primary bttn-round-corner" value="Register">
                                 </div>
                             </div> 
                         </fieldset>
@@ -292,6 +289,16 @@
                 <div class="col-lg-8">
                     <select class="form-control" id="club" name="club" required>
                         <option value="" selected>-select-</option>
+                        <?php 
+                            $select_query="SELECT DISTINCT club_name FROM t_participant";
+                            $result=mysql_query($select_query);
+                            while ($row = mysql_fetch_array($result)) {
+                                $club_name= $row["club_name"];
+                                if($club_name!=''){
+                                   echo "<option value=\"$club_name\">$club_name</option>";
+                                }
+                            }                         
+                        ?>
                         <option value="Others">Others</option>
                     </select>
                 </div>
@@ -306,7 +313,7 @@
         <div class="form-group">
             <label for="club_name_other" class="col-lg-1 control-label">&nbsp;</label>
             <div class="col-lg-11">
-                <input type="text" class="form-control" id="club_name_other" placeholder="Enter Your Club Name">
+                <input type="text" class="form-control" id="club_name_other" name="club_name_other" placeholder="Enter Your Club Name">
             </div>
         </div>
     </script>
@@ -315,7 +322,7 @@
             <label for="select" class="col-lg-4 control-label">State</label>
             <div class="col-lg-8">
                 <select class="form-control" id="state" name="state" required>
-                    <option value="default" selected="">-Select-</option>
+                    <option value="" selected="">-Select-</option>
                     <option value="AN">Andaman and Nicobar Islands</option>
                     <option value="AP">Andhra Pradesh</option>
                     <option value="AR">Arunachal Pradesh</option>
