@@ -11,29 +11,284 @@ include('./includes/db.php');
 
 
 class Participant { 
-	 	/****************************************************************************************
-			Member Variables	
-		 ***************************************************************************************/
-		var 
-			$first_name,
-			$last_name,
-			$country,
-			$state_code,
-			$gender,
-			$club_name,
-			$dob,
-			$weight,
-			$choice_event_kata,
-			$choice_event_kumite,
-			$choice_event_weapons,
-			$choice_event_team_kata,
-			$email_id,
-			$contact_no,
-			$address;	
+ 	/****************************************************************************************
+		Member Variables	
+	 ***************************************************************************************/
+	var 
+		$first_name,
+		$last_name,
+		$country,
+		$state_code,
+		$gender,
+		$club_name,
+		$dob,
+		$weight,
+		$choice_event_kata,
+		$choice_event_kumite,
+		$choice_event_weapons,
+		$choice_event_team_kata,
+		$email_id,
+		$contact_no,
+		$address;
+     
+    function show_participant_details() {           
+        $select_query="SELECT * FROM t_participant
+                WHERE       
+                tournament_id='1' AND
+                participant_name='$this->participant_name' AND
+                email_id='$this->email_id'";     
+        $result=mysql_query($select_query);
+        $data=mysql_fetch_array($result);
+        if($data['participant_id']) {
+            $choice_arr=array();
+            if($data['choice_event_kata']){
+                array_push($choice_arr,'kata');
+            }
+            if($data['choice_event_kumite']){
+                array_push($choice_arr,'Kumite');
+            }
+            if($data['choice_event_weapons']){
+                array_push($choice_arr,'Weapons');
+            }
+            if($data['choice_event_team_kata']){
+                array_push($choice_arr,'Team Kata');
+            }    
+            $state=$this->get_state($data['state_code']);       
+            $choice_of_event=join(",",$choice_arr);
 
-	function insert_into_participant() {	
+            $template='<div class="container">
+                            <div class="row body-content">
+                                <div class="col-lg-offset-1 col-lg-10 well2">
+                                    <div class="well round-corner-right">
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <legend>
+                                                    <div class="text-center">Candidate Registration for Trinational Karate Championship</div>
+                                                </legend>
+                                                <div class="row">
+                                                    <div class="col-xs-4 col-xs-push-8">
+                                                        <div class="text-center">
+                                                            <img src="uploads/'.$data['participant_id'].'.'.$data['picture_ext'].'" alt="click me" class="img-thumbnail">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-8 col-xs-pull-4">
+                                                        <div class="form-group">
+                                                            <label for="candidate_name" class="col-xs-4 control-label">Name</label>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" class="form-control" disabled="true" value="Monojit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-xs-4 control-label">Gender</label>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" class="form-control" disabled="true" value="Male">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-xs-4 control-label">Date Of Birth</label>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" class="form-control" value="56/78/2014" disabled="true">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-xs-4 control-label">Weight</label>
+                                                            <div class="col-xs-8">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" disabled="true" value="50.58">
+                                                                    <span class="input-group-addon">Kg</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-xs-4 control-label">Country</label>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" class="form-control" disabled="true" value="India">
+                                                            </div>
+                                                        </div>
+                                                        <div class="states-selection">
+
+                                                        </div>
+                                                        <div class="club-selection row">
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-xs-4 control-label">Choice of Events</label>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" class="form-control" disabled="true" value="kata,kumite,weapons,team kata">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-xs-4 control-label">Contact No.</label>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" class="form-control" disabled="true" value="+91-1234567890">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-xs-4 control-label">Email</label>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" class="form-control" disabled="true" value="abc@123.com">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="address" class="col-xs-4 control-label">Address</label>
+                                                            <div class="col-xs-8">
+                                                                <textarea class="form-control" rows="4" disabled="true" value="abc@123.com"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group hidden-print ">
+                                                    <div class="col-sm-12 text-center">
+                                                        <input type="button" onClick=window.print() class="btn btn-primary bttn-round-corner" value="Print">
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>';
+            echo $template;
+            exit;
+        }else{
+            echo "No Such Candidate";
+            exit;
+        }
+    }
+    function get_state($state_code){
+        switch($state_code){
+            case 'AN':
+                return 'Andaman and Nicobar Islands';
+                break;
+            case 'AP':
+                return 'Andhra Pradesh';
+                break;
+            case 'AR':
+                return 'Arunachal Pradesh';
+                break;
+            case 'AS':
+                return 'Assam';
+                break;
+            case 'BR':
+                return 'Bihar';
+                break;
+            case 'CH':
+                return 'Chandigarh';
+                break;
+            case 'CT':
+                return 'Chhattisgarh';
+                break;
+            case 'DN':
+                return 'Dadra and Nagar Haveli';
+                break;
+            case 'DD':
+                return 'Daman and Diu';
+                break;
+            case 'DL':
+                return 'Delhi';
+                break;
+            case 'GA':
+                return 'Goa';
+                break;
+            case 'GJ':
+                return 'Gujarat';
+                break;
+            case 'HR':
+                return 'Haryana';
+                break;
+            case 'HP':
+                return 'Himachal Pradesh';
+                break;
+            case 'JK':
+                return 'Jammu and Kashmir';
+                break;
+            case 'JR':
+                return 'Jharkhand';
+                break;
+            case 'KA':
+                return 'Karnataka';
+                break;
+            case 'KL':
+                return 'Kerala';
+                break;
+            case 'LD':
+                return 'Lakshadweep';
+                break;
+            case 'MP':
+                return 'Madhya Pradesh';
+                break;
+            case 'MH':
+                return 'Maharashtra';
+                break;
+            case 'MN':
+                return 'Manipur';
+                break;
+            case 'ML':
+                return 'Meghalaya';
+                break;
+            case 'MZ':
+                return 'Mizoram';
+                break;
+            case 'NL':
+                return 'Nagaland';
+                break;
+            case 'OR':
+                return 'Orissa';
+                break;
+            case 'PY':
+                return 'Pondicherry';
+                break;
+            case 'PB':
+                return 'Punjab';
+                break;
+            case 'RJ':
+                return 'Rajasthan';
+                break;
+            case 'SK':
+                return 'Sikkim';
+                break;
+            case 'TN':
+                return 'Tamil Nadu';
+                break;
+            case 'TE':
+                return 'Telangana';
+                break;
+            case 'TR':
+                return 'Tripura';
+                break;
+            case 'UL':
+                return 'Uttaranchal';
+                break;
+            case 'UP':
+                return 'Uttar Pradesh';
+                break;
+            case 'WB':
+                return 'West Bengal';
+                break;
+            default:
+                return 'Other';
+        }
+    }
+
+    function is_already_registered() {          
+        $select_query="SELECT * FROM t_participant
+                WHERE       
+                tournament_id='1' AND
+                participant_name='$this->participant_name' AND
+                email_id='$this->email_id'"; 
+        $result=mysql_query($select_query);
+        $data=mysql_fetch_array($result);
+        if($data['participant_id']){
+            return $data['participant_id'];
+        }
+        return false;
+    }
+
+	function insert_into_participant() {
 		$tournament_id='1';
-				
+        $path = $_FILES['file']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);			
 	 	$query="INSERT INTO t_participant
 				(
 					tournament_id,
@@ -50,7 +305,8 @@ class Participant {
 					choice_event_team_kata,
 					email_id,
 					contact_no,
-					address
+					address,
+                    picture_ext
 				)						
 		 	 	VALUES 
 				(
@@ -68,260 +324,22 @@ class Participant {
 					'$this->choice_event_team_kata',
 					'$this->email_id',
 					'$this->contact_no',
-					'$this->address'
+					'$this->address',
+                    '$ext'
 				)";	
-
-				
-		if(mysql_query($query))
-		{
-			$template='<div class="container">
-        <!--   <div class="navbar navbar-inverse">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Brand</a>
-          </div>
-          <div class="navbar-collapse collapse navbar-inverse-collapse">
-              <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Active</a>
-                  </li>
-                  <li><a href="#">Link</a>
-                  </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">Link</a>
-                  </li>
-              </ul>
-          </div>
-      </div> -->
-
-
-        <div class="row body-content">
-            <!-- <div class="col-lg-4 visible-lg">
-                <div class="well round-corner-left">
-                    <div class="image-container"><img src="./images/ka.jpg"></div>
-                </div>
-            </div> -->
-            <div class="col-lg-offset-1 col-lg-10 well2">
-                <div class="well round-corner-right">
-                    <form class="form-horizontal" name="frmAddProduct" id="frmAddProduct" method="POST" enctype="multipart/form-data">
-                        <fieldset>
-                            <legend>
-                                <div class="col-sm-offset-1">Legend</div>
-                            </legend>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="candidate_name" class="col-lg-4 control-label">Name</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_name" id="candidate_name" value="'.$this->participant_name.'" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Gender</label>
-                                        <div class="col-sm-8">
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="sex" value="M" checked="">Male
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="sex"  value="F">Female
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
- 
-                            
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="candidate_dob" class="col-lg-4 control-label">Date Of Birth</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control date" name="candidate_dob" id="candidate_dob" placeholder="DD/MM/YYYY" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="candidate_weight" class="col-lg-4 control-label">Weight</label>
-                                        <div class="col-lg-8">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="candidate_weight" id="candidate_weight" placeholder="Ex : 50.58" required>
-                                                <span class="input-group-addon">Kg</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="select" class="col-lg-4 control-label">Country</label>
-                                        <div class="col-lg-8">
-                                            <select class="form-control" name="country" id="country" required>
-                                                <option value="" selected>-select-</option>
-                                                <option value="India">India</option>
-                                                <option value="Bangladesh">Bangladesh</option>
-                                                <option value="Nepal">Nepal</option>
-                                                <option value="Others">Others</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 states-selection">
-
-                                </div>
-                            </div>
-
-                            <div class="club-selection row">
-
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Choice of Events</label>
-                                <div class="col-sm-10">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="kata" id="kata" value="1">Kata
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="kumite" id="kumite" value="1">Kumite
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="weapons" id="weapons" value="1">Weapons
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="team_kata" id="team_kata" value="1">Team Kata
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="candidate_mo_num" class="col-lg-4 control-label">Contact No.</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_mo_num" id="candidate_mo_num" placeholder="Ex. +91-1234567890" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="candidate_email" class="col-lg-4 control-label">Email</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="candidate_email" id="candidate_email" placeholder="Ex. abc@123.com">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="textArea" class="col-lg-2 control-label">Address</label>
-                                <div class="col-lg-10">
-                                    <textarea class="form-control" rows="4" name="address" id="address" required></textarea>
-                                    <span class="help-block">Enter proper mailing address</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-lg-12 text-center">
-                                    <!-- <button type="submit" class="btn btn-primary bttn-round-corner" name="submit" id="submit">Submit</button> -->
-                                     <input type="submit" name="Submit" id="submit_button"  class="btn btn-primary bttn-round-corner" value="Register">
-                                </div>
-                            </div> 
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>';/*
-			echo $template;
-			exit;*/
-
-	 	$select_query="SELECT * FROM t_participant
-	 			WHERE		
-					tournament_id='1' AND
-					participant_name='$this->participant_name' AND
-					country='$this->country' AND
-					state_code='$this->state_code' AND
-					gender='$this->gender' AND
-					club_name='$this->club_name' AND
-					dob='$this->dob' AND
-					weight='$this->weight' AND
-					choice_event_kata='$this->choice_event_kata' AND
-					choice_event_kumite='$this->choice_event_kumite' AND
-					choice_event_weapons='$this->choice_event_weapons' AND
-					choice_event_team_kata='$this->choice_event_team_kata' AND
-					email_id='$this->email_id' AND
-					contact_no='$this->contact_no' AND
-					address='$this->address'";	
-
-			$result=mysql_query($select_query) or die(mysql_error());
-			$data=mysql_fetch_array($result);
-            echo '<script language="javascript" type="text/javascript">
-                  alert("Your Participant Id is '.$data['participant_id'].'");
-                 </script>';
-		} else {
-			echo $query;
-			echo '<script language="javascript" type="text/javascript">
-				  alert("Employee Details not Inserted");
-				 </script>';
-		}
+        if ($this->is_already_registered()) {
+            $this->show_participant_details();
+        }
+        else {                
+            if (mysql_query($query)) { 
+                $candidate_id=$this->is_already_registered(); 
+                $tmp_name=$_FILES['file']['tmp_name'];
+                $target_dir = 'uploads/'.$candidate_id.'.'.$ext;
+                move_uploaded_file($tmp_name, $target_dir);       
+                $this->show_participant_details();
+            }
+        }
 	}
-	 
-    function registered_participant_details(){
-    		
-    	$select_query="SELECT * FROM t_participant
-    			WHERE		
-    			tournament_id='1',
-    			participant_name='$this->participant_name',
-    			email_id='$this->email_id'";	
-    		echo $select_query;	
-    	$result=mysql_query($select_query) or die(mysql_error());
-    	$data=mysql_fetch_array($result);
-    	echo $data['participant_id'];
-    	exit;
-    }
 
 } // End of Class
 ?>

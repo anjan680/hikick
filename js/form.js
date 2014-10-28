@@ -77,11 +77,38 @@ var formValidator = function(event) {
         validationFailed = true;
         errorNotifier($('#address'), 'keyup');
     }
+    console.log();
+    if (!$('#file').val() ||
+        $('.picture').attr('src') === 'images/default-profile.png' ||
+        $('.picture').attr('src').substring(5, 10) !== 'image' ||
+        $('#file')[0].files[0].size > 1024 * 1024 * 2) {
+        validationFailed = true;
+        $('.picture').addClass('error-in-img');
+        $('.error-in-img').click(function() {
+            $('.error-in-img').removeClass('error-in-img');
+        })
+    }
     if (validationFailed) {
         event.preventDefault();
     }
 };
 $(document).ready(function() {
+
+    $("#file").change(function() {
+        var input = this;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('.picture').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+
+    $('.picture').click(function() {
+        $('#file')[0].click();
+    });
+
     $('#country').change(function() {
         var country = $(this).val();
         if (country === 'India') {
@@ -109,13 +136,3 @@ $(document).ready(function() {
     });
     $('#submit_button').click(formValidator);
 });
-
-
-/*
-
-    if (!$('#club').val()) {
-        console.log('validation faild in club');
-    }
-if (true) {
-    console.log('validation faild');
-}*/

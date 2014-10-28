@@ -1,9 +1,5 @@
-.person {
-    background-color: rgba(00, 00, 99, 0.5)
-}
 .round-corner-right {
     border-radius: 0px 0px 40px 40px !important;
-    background-color: #A2EBE8 !important;
 }
 .round-corner-left {
     border-radius: 40px 0px 0px 40px !important;
@@ -22,9 +18,24 @@
     background-color: #c3e6e5;
 }
 .well2 {
-    background: url('../images/ka.jpg') 0% 20%;
+    background: url('../images/ka.jpg') 30% 20%;
     border-radius: 0px 0px 40px 40px;
 }
 .well {
-    opacity: 0.88;
+    background-color: rgba(115, 207, 229, 0.89) !important;
+}
+.error-in-img {
+    background-color: #a94442!important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.picture {
+    max-width: 70% !important;
+    max-height: 230px;
+    cursor: pointer;
+}
+#file {
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
 }

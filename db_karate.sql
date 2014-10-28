@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2014 at 07:14 PM
+-- Generation Time: Oct 28, 2014 at 12:41 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -43,18 +43,19 @@ CREATE TABLE IF NOT EXISTS `t_participant` (
   `email_id` varchar(50) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
   `address` varchar(200) NOT NULL,
+  `picture_ext` varchar(10) NOT NULL,
   PRIMARY KEY (`participant_id`),
   UNIQUE KEY `uniq_part` (`participant_name`,`email_id`),
   KEY `tournament_id` (`tournament_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `t_participant`
 --
 
-INSERT INTO `t_participant` (`participant_id`, `tournament_id`, `participant_name`, `country`, `state_code`, `gender`, `club_name`, `dob`, `weight`, `choice_event_kata`, `choice_event_kumite`, `choice_event_weapons`, `choice_event_team_kata`, `email_id`, `contact_no`, `address`) VALUES
-(1, 1, 'gyhgtvyhg', 'India', 'CH', 'M', 'clb1', '16/10/2014', 676, 0, 0, 1, 0, '6767@dfd.yuy', '787', 'gygtfuhghj'),
-(2, 1, 'fdgdfg', 'Bangladesh', '', 'M', '', '08/10/2014', 45.78, 1, 0, 0, 0, 'dfg@fgdg.ki', 'ffdg', 'gfhgfh');
+INSERT INTO `t_participant` (`participant_id`, `tournament_id`, `participant_name`, `country`, `state_code`, `gender`, `club_name`, `dob`, `weight`, `choice_event_kata`, `choice_event_kumite`, `choice_event_weapons`, `choice_event_team_kata`, `email_id`, `contact_no`, `address`, `picture_ext`) VALUES
+(1, 1, 'gyhgtvyhg', 'India', 'CH', 'M', 'clb1', '16/10/2014', 676, 0, 0, 1, 0, '6767@dfd.yuy', '787', 'gygtfuhghj', ''),
+(22, 1, 'hgfhygf', 'Bangladesh', '', 'M', '', '16/10/2014', 45.78, 1, 0, 0, 1, '6767@dfd.yuy', '7567', 'hjihkh', 'jpg');
 
 -- --------------------------------------------------------
 

@@ -6,7 +6,6 @@
     <title>Try Bootstrap</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./lib/bootstrap-3.2.0-dist/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="./lib/bootstrap.min.css"> -->
     <link rel="icon" type="image/png" href="./images/favicon.jpg">
 
     <link href="./lib/datePicker/source/datepicker_dashboard/datepicker_dashboard.css" rel="stylesheet">
@@ -107,29 +106,31 @@
 
 
         <div class="row body-content">
-            <!-- <div class="col-lg-4 visible-lg">
-                <div class="well round-corner-left">
-                    <div class="image-container"><img src="./images/ka.jpg"></div>
-                </div>
-            </div> -->
+
+
+
+
             <div class="col-lg-offset-1 col-lg-10 well2">
                 <div class="well round-corner-right">
-                    <form class="form-horizontal" name="frmAddProduct" id="frmAddProduct" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" name="register_participant" id="register_participant" method="POST" enctype="multipart/form-data">
                         <fieldset>
                             <legend>
-                                <div class="col-sm-offset-1 text-center">Candidate Registration for Trinational Karate Championship</div>
+                                <div class="text-center">Candidate Registration for Trinational Karate Championship</div>
                             </legend>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-sm-push-6">
+                                    <div class="text-center">
+                                        <img src="images/default-profile.png" alt="click me" class="img-thumbnail picture">
+                                        <input type="file" id="file" name="file"  accept="image/gif, image/jpeg, image/png">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-sm-pull-6">
                                     <div class="form-group">
                                         <label for="candidate_name" class="col-lg-4 control-label">Name</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-8">        
                                             <input type="text" class="form-control" name="candidate_name" id="candidate_name" placeholder="Candidate's Name" required>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Gender</label>
                                         <div class="col-sm-8">
@@ -151,22 +152,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
- 
-                            
-
-                            <div class="row">
-                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="candidate_dob" class="col-lg-4 control-label">Date Of Birth</label>
                                         <div class="col-lg-8">
                                             <input type="text" class="form-control date" name="candidate_dob" id="candidate_dob" placeholder="DD/MM/YYYY" required>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
+                                    </div>                                    
                                     <div class="form-group">
                                         <label for="candidate_weight" class="col-lg-4 control-label">Weight</label>
                                         <div class="col-lg-8">
@@ -176,13 +167,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="select" class="col-lg-4 control-label">Country</label>
+                                        <label for="country" class="col-lg-4 control-label">Country</label>
                                         <div class="col-lg-8">
                                             <select class="form-control" name="country" id="country" required>
                                                 <option value="" selected>-select-</option>
@@ -193,9 +179,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 states-selection">
+                                    <div class="states-selection">
 
+                                    </div>
                                 </div>
                             </div>
 
@@ -262,7 +248,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="textArea" class="col-lg-2 control-label">Address</label>
+                                <label for="address" class="col-lg-2 control-label">Address</label>
                                 <div class="col-lg-10">
                                     <textarea class="form-control" rows="4" name="address" id="address" required></textarea>
                                     <span class="help-block">Enter proper mailing address</span>
@@ -285,7 +271,7 @@
     <script class="club-select-template" type="text/x-handlebars-template">
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="club_name" class="col-lg-4 control-label">Club</label>
+                <label for="club" class="col-lg-4 control-label">Club</label>
                 <div class="col-lg-8">
                     <select class="form-control" id="club" name="club" required>
                         <option value="" selected>-select-</option>
@@ -319,7 +305,7 @@
     </script>
     <script class="states-selection-template" type="text/x-handlebars-template">
         <div class="form-group">
-            <label for="select" class="col-lg-4 control-label">State</label>
+            <label for="state" class="col-lg-4 control-label">State</label>
             <div class="col-lg-8">
                 <select class="form-control" id="state" name="state" required>
                     <option value="" selected="">-Select-</option>
