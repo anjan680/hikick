@@ -17,13 +17,19 @@ var validateEmail = function(email) {
     return re.test(email);
 }
 
-function validateWeight(email) {
-    var re = /\d\d\.\d\d/;
-    return re.test(email);
+function validateWeight(weight) {
+    //var re = /\d\d\.\d\d/;
+    //return re.test(weight);
+    if (!isNaN(weight) &&
+        weight < 300 && Weight > 5) {
+        return true;
+    }
+    return false;
 }
 var formValidator = function(event) {
     var validationFailed = false;
-    if (!$('#candidate_name').val()) {
+    if (!$('#candidate_name').val() ||
+    	$('#candidate_name').val().length>75) {
         validationFailed = true;
         errorNotifier($('#candidate_name'), 'keyup');
     }
@@ -64,7 +70,8 @@ var formValidator = function(event) {
         validationFailed = true;
         errorNotifier($('#kata').parents('.form-group'), 'click', true);
     }
-    if (!$('#candidate_mo_num').val()) {
+    if (!$('#candidate_mo_num').val()||
+    	$('#candidate_mo_num').val().length>15) {
         validationFailed = true;
         errorNotifier($('#candidate_mo_num'), 'keyup');
     }
@@ -73,11 +80,11 @@ var formValidator = function(event) {
         validationFailed = true;
         errorNotifier($('#candidate_email'), 'keyup');
     }
-    if (!$('#address').val()) {
+    if (!$('#address').val() ||
+    	$('#address').val().length>200) {
         validationFailed = true;
         errorNotifier($('#address'), 'keyup');
     }
-    console.log();
     if (!$('#file').val() ||
         $('.picture').attr('src') === 'images/default-profile.png' ||
         $('.picture').attr('src').substring(5, 10) !== 'image' ||
