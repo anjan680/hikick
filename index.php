@@ -23,6 +23,8 @@
     <script src="./lib/datePicker/source/Picker.Attach.js" type="text/javascript"></script>
     <script src="./lib/datePicker/source/Picker.Date.js" type="text/javascript"></script>
 
+    <script src="./lib/jspdf.debug.js" type="text/javascript"></script>
+
     <script src="./js/form.js" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function() {
@@ -58,6 +60,7 @@
             $club_name=str_replace("''","''", $_POST['club_name_other']);
         }
         $objParticipant->participant_name = str_replace("''","''", $_POST['candidate_name']);
+        $objParticipant->instructor_name = str_replace("''","''", $_POST['instructor_name']);
         $objParticipant->country=str_replace("''","''", $_POST['country']);
         $objParticipant->state_code=str_replace("''","''", $_POST['state']);
         $objParticipant->gender=str_replace("''","''", $_POST['sex']);
@@ -113,7 +116,7 @@
             <div class="col-lg-offset-1 col-lg-10 well2">
                 <div class="well round-corner-right">
                     <form class="form-horizontal" name="register_participant" id="register_participant" method="POST" enctype="multipart/form-data">
-                            <div class="text-center legend">Candidate Registration for Trinational Karate Championship</div>
+                            <div class="text-center legend">Candidate Registration for Tri Nation Cup Open Karate Championship 2014</div>
                             </legend>
                             <div class="row">
                                 <div class="col-sm-6 col-sm-push-6">
@@ -127,6 +130,12 @@
                                         <label for="candidate_name" class="col-lg-4 control-label">Name</label>
                                         <div class="col-lg-8">        
                                             <input type="text" class="form-control" name="candidate_name" id="candidate_name" placeholder="Candidate's Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="candidate_name" class="col-lg-4 control-label">Instructor</label>
+                                        <div class="col-lg-8">        
+                                            <input type="text" class="form-control" name="instructor_name" id="instructor_name" placeholder="Instructors's Name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -191,33 +200,24 @@
                                 <label class="col-sm-2 control-label">Choice of Events</label>
                                 <div class="col-sm-10">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" name="kata" id="kata" value="1">Kata
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" name="kumite" id="kumite" value="1">Kumite
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" name="weapons" id="weapons" value="1">Weapons
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="team_kata" id="team_kata" value="1">Team Kata
                                                 </label>
                                             </div>
                                         </div>

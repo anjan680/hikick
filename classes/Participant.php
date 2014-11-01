@@ -16,6 +16,7 @@ class Participant {
 	 ***************************************************************************************/
 	var 
 		$participant_name,
+        $instructor_name,
 		$country,
 		$state_code,
 		$gender,
@@ -52,111 +53,117 @@ class Participant {
             if($data['choice_event_team_kata']){
                 array_push($choice_arr,'Team Kata');
             }   
-        $gender='Male';
-        if($data['gender']==='F'){
-            $gender='Female'; 
-        }
-        $state=$this->get_state($data['state_code']);       
-        $choice_of_event=join(",",$choice_arr);
+            $gender='Male';
+            if($data['gender']==='F'){
+                $gender='Female'; 
+            }
+            $state=$this->get_state($data['state_code']);       
+            $choice_of_event=join(",",$choice_arr);
 
-        $template='<div class="container">
-                        <div class="row body-content">
-                            <div class="col-lg-offset-1 col-lg-10 well2">
-                                <div class="well round-corner-right">
-                                    <form class="form-horizontal">
-                                        <div class="text-center legend">Candidate Registration for Trinational Karate Championship</div>
-                                        <div class="row">
-                                            <div class="col-xs-4 col-xs-push-8">
-                                                <div class="text-center">
-                                                    <img src="uploads/'.$data['participant_id'].'.'.$data['picture_ext'].'" alt="click me" class="img-thumbnail">
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-8 col-xs-pull-4">
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Registration No.</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" disabled="true" value="'.$data['participant_id'].'">
+            $template='<div class="container">
+                            <div class="row body-content">
+                                <div class="col-lg-offset-1 col-lg-10 well2">
+                                    <div class="well round-corner-right">
+                                        <form class="form-horizontal">
+                                            <div class="text-center legend">Candidate Registration for Tri Nation Cup Open Karate Championship 2014</div>
+                                            <div class="row">
+                                                <div class="col-xs-4 col-xs-push-8">
+                                                    <div class="text-center">
+                                                        <img src="uploads/'.$data['profile_picture'].'" alt="click me" class="img-thumbnail">
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Name</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" disabled="true" value="'.$data['participant_name'].'">
+                                                <div class="col-xs-8 col-xs-pull-4">
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Registration No.</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" disabled="true" value="'.$data['participant_id'].'">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Gender</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" disabled="true" value="'.$gender.'">
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Name</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" disabled="true" value="'.$data['participant_name'].'">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Date Of Birth</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" value="'.$data['dob'].'" disabled="true">
+                                                    <div class="form-group">
+                                                        <label for="candidate_name" class="col-lg-4 control-label">Instructor</label>
+                                                        <div class="col-lg-8">        
+                                                            <input type="text" class="form-control" disabled="true" value="'.$data['instructor_name'].'">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Weight</label>
-                                                    <div class="col-xs-8">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" disabled="true" value="'.$data['weight'].'">
-                                                            <span class="input-group-addon">Kg</span>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Gender</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" disabled="true" value="'.$gender.'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Date Of Birth</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" value="'.$data['dob'].'" disabled="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Weight</label>
+                                                        <div class="col-xs-8">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" disabled="true" value="'.$data['weight'].'">
+                                                                <span class="input-group-addon">Kg</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Country</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" disabled="true" value="'.$data['country'].'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="states-selection">
+
+                                                    </div>
+                                                    <div class="club-selection row">
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Choice of Events</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" disabled="true" value="'.$choice_of_event.'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Contact No.</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" disabled="true" value="'.$data['contact_no'].'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-4 control-label">Email</label>
+                                                        <div class="col-xs-8">
+                                                            <input type="text" class="form-control" disabled="true" value="'.$data['email_id'].'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="address" class="col-xs-4 control-label">Address</label>
+                                                        <div class="col-xs-8">
+                                                            <textarea class="form-control" rows="4" disabled="true">'.$data['address'].'</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Country</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" disabled="true" value="'.$data['country'].'">
-                                                    </div>
-                                                </div>
-                                                <div class="states-selection">
-
-                                                </div>
-                                                <div class="club-selection row">
-
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Choice of Events</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" disabled="true" value="'.$choice_of_event.'">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Contact No.</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" disabled="true" value="'.$data['contact_no'].'">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-xs-4 control-label">Email</label>
-                                                    <div class="col-xs-8">
-                                                        <input type="text" class="form-control" disabled="true" value="'.$data['email_id'].'">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="address" class="col-xs-4 control-label">Address</label>
-                                                    <div class="col-xs-8">
-                                                        <textarea class="form-control" rows="4" disabled="true">'.$data['address'].'</textarea>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group hidden-print ">
+                                                    <div class="col-sm-12 text-center">
+                                                        <input type="button" onClick=window.print() class="btn btn-primary bttn-round-corner" value="Print">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group hidden-print ">
-                                                <div class="col-sm-12 text-center">
-                                                    <input type="button" onClick=window.print() class="btn btn-primary bttn-round-corner" value="Print">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                   </div>';
-        echo $template;
-        exit;
+                       </div>';
+            echo $template;
+            exit;
         }else{
             echo "No Such Candidate";
             exit;
@@ -294,11 +301,13 @@ class Participant {
 	function insert_into_participant() {
 		$tournament_id='1';
         $path = $_FILES['file']['name'];
-        $ext = pathinfo($path, PATHINFO_EXTENSION);			
+        $randum_hex=dechex(rand (10,10e9)).dechex(rand (10,10e9)).dechex(rand (10,10e9));
+        $profile_picture = $randum_hex.'.'.pathinfo($path, PATHINFO_EXTENSION);			
 	 	$query="INSERT INTO t_participant
 				(
 					tournament_id,
 					participant_name,
+                    instructor_name,
 					country,
 					state_code,
 					gender,
@@ -312,12 +321,13 @@ class Participant {
 					email_id,
 					contact_no,
 					address,
-                    picture_ext
+                    profile_picture
 				)						
 		 	 	VALUES 
 				(
 					'1',
 					'$this->participant_name',
+                    '$this->instructor_name',
 					'$this->country',
 					'$this->state_code',
 					'$this->gender',
@@ -331,7 +341,7 @@ class Participant {
 					'$this->email_id',
 					'$this->contact_no',
 					'$this->address',
-                    '$ext'
+                    '$profile_picture'
 				)";	
         if ($this->is_already_registered()) {
             $this->show_participant_details();
@@ -340,7 +350,7 @@ class Participant {
             if (mysql_query($query)) { 
                 $candidate_id=$this->is_already_registered(); 
                 $tmp_name=$_FILES['file']['tmp_name'];
-                $target_dir = 'uploads/'.$candidate_id.'.'.$ext;
+                $target_dir = 'uploads/'.$profile_picture;
                 move_uploaded_file($tmp_name, $target_dir);       
                 $this->show_participant_details();
             }

@@ -14,6 +14,9 @@ var errorNotifier = function(element, resetOn, isParent) {
 }
 var validateEmail = function(email) {
     var re = /\S+@\S+\.\S+/;
+    if (email.length > 50) {
+        return false;
+    }
     return re.test(email);
 }
 
@@ -21,7 +24,7 @@ function validateWeight(weight) {
     //var re = /\d\d\.\d\d/;
     //return re.test(weight);
     if (!isNaN(weight) &&
-        weight < 300 && Weight > 5) {
+        weight < 300 && weight > 5) {
         return true;
     }
     return false;
@@ -29,9 +32,14 @@ function validateWeight(weight) {
 var formValidator = function(event) {
     var validationFailed = false;
     if (!$('#candidate_name').val() ||
-    	$('#candidate_name').val().length>75) {
+        $('#candidate_name').val().length > 75) {
         validationFailed = true;
         errorNotifier($('#candidate_name'), 'keyup');
+    }
+    if (!$('#instructor_name').val() ||
+        $('#instructor_name').val().length > 75) {
+        validationFailed = true;
+        errorNotifier($('#instructor_name'), 'keyup');
     }
     if (!$('#candidate_dob').val()) {
         validationFailed = true;
@@ -70,8 +78,9 @@ var formValidator = function(event) {
         validationFailed = true;
         errorNotifier($('#kata').parents('.form-group'), 'click', true);
     }
-    if (!$('#candidate_mo_num').val()||
-    	$('#candidate_mo_num').val().length>15) {
+    if (!$('#candidate_mo_num').val() ||
+        $('#candidate_mo_num').val().length > 15 ||
+        $('#candidate_mo_num').val().length < 10) {
         validationFailed = true;
         errorNotifier($('#candidate_mo_num'), 'keyup');
     }
@@ -81,7 +90,7 @@ var formValidator = function(event) {
         errorNotifier($('#candidate_email'), 'keyup');
     }
     if (!$('#address').val() ||
-    	$('#address').val().length>200) {
+        $('#address').val().length > 200) {
         validationFailed = true;
         errorNotifier($('#address'), 'keyup');
     }
