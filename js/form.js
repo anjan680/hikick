@@ -81,7 +81,7 @@ var formValidator = function(event) {
     if (!$('#file').val() ||
         $('.picture').attr('src') === 'images/default-profile.png' ||
         $('.picture').attr('src').substring(5, 10) !== 'image' ||
-        $('#file')[0].files[0].size > 1024 * 1024 * 2) {
+        $('#file')[0].files[0].size > 1024 * 800) {
         validationFailed = true;
         $('.picture').addClass('error-in-img');
         $('.error-in-img').click(function() {

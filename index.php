@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Try Bootstrap</title>
+    <title>HikickIndia</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./lib/bootstrap-3.2.0-dist/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="./images/favicon.jpg">
@@ -113,9 +113,7 @@
             <div class="col-lg-offset-1 col-lg-10 well2">
                 <div class="well round-corner-right">
                     <form class="form-horizontal" name="register_participant" id="register_participant" method="POST" enctype="multipart/form-data">
-                        <fieldset>
-                            <legend>
-                                <div class="text-center">Candidate Registration for Trinational Karate Championship</div>
+                            <div class="text-center legend">Candidate Registration for Trinational Karate Championship</div>
                             </legend>
                             <div class="row">
                                 <div class="col-sm-6 col-sm-push-6">
@@ -261,7 +259,6 @@
                                      <input type="submit" name="Submit" id="submit_button"  class="btn btn-primary bttn-round-corner" value="Register">
                                 </div>
                             </div> 
-                        </fieldset>
                     </form>
                 </div>
             </div>
